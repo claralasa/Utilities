@@ -23,11 +23,11 @@
 void plotter(){
   
   TString inputFolder = "/eos/user/c/clasaosa/Ph2pixel3D/";
-  TString fname = "DQM_4Mu_Pt1_200_2026D65_eta0.root";
-  TString fname2 = "DQM_V0001_R000000001__Global__CMSSW_X_Y_Z__RECO_1600_NPColumn.root";
+  TString fname = "DQM_oldlogic_withfixes.root";
+  TString fname2 = "DQM_0.4um_new.root";
 
-  TFile* file = new TFile(inputFolder+"Validate_4Mu_Pt1_200_2026D65_eta0_newGeom/"+fname);
-  TFile* file2 = new TFile(inputFolder+"Validate_4Mu_Pt1_200_2026D54_eta0_oldGeom/"+fname2);
+  TFile* file = new TFile(inputFolder+"Validate_4Elec_Pt5.6_2026D65_eta0_ChSh_oldlogic_withfixes/"+fname);
+  TFile* file2 = new TFile(inputFolder+"Validate_4Elec_Pt5.6_2026D65_eta0_ChSh_0.4um_new/"+fname2);
 
   std::vector<TString> list_layers = {"Layer1/", "Layer2/"};
 
@@ -179,8 +179,8 @@ void plotter(){
     /////////////////////////
 
     TString png_name = gname;
-    c9->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+".png");
-    c10->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_old.png");
+    c9->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_oldlogic_withfixes.png");
+    c10->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_0.4um_new.png");
 
   }
 
@@ -220,6 +220,10 @@ void plotter(){
           gPad->SetRightMargin(0.3);
 	}
 
+	if(hname == "Dx_1" || hname == "Dy_1"){
+	  gStyle->SetPalette(kTemperatureMap);
+	}
+
 	profile->Draw("colz");
 	gPad->Update();
 	TPaletteAxis* palette = (TPaletteAxis*)profile->GetListOfFunctions()->FindObject("palette");
@@ -255,7 +259,7 @@ void plotter(){
 	}else if (hname == "Charge_elec_1"){
 	  profile->GetZaxis()->SetRangeUser(0,20000);
 	}else if (hname == "ClusterSize_1"){
-	  profile->GetZaxis()->SetRangeUser(0,2);
+	  profile->GetZaxis()->SetRangeUser(1,2);
 	}else if (hname == "Dx_1"){
 	  profile->GetZaxis()->SetRangeUser(-50,50);
 	}else if (hname == "Dy_1"){
@@ -349,7 +353,7 @@ void plotter(){
 	}else if (hname == "Charge_elec_1"){
 	  profile2->GetZaxis()->SetRangeUser(0,20000);
 	}else if (hname == "ClusterSize_1"){
-	  profile2->GetZaxis()->SetRangeUser(0,2);
+	  profile2->GetZaxis()->SetRangeUser(1,2);
 	}else if (hname == "Dx_1"){
 	  profile2->GetZaxis()->SetRangeUser(-50,50);
 	}else if (hname == "Dy_1"){
@@ -390,6 +394,7 @@ void plotter(){
           profile2->GetZaxis()->SetTitleOffset(2.2);
 	}
 
+	profile2->GetZaxis()->SetLabelOffset(0.02);
         profile2->GetZaxis()->SetLabelFont(63);
         profile2->GetZaxis()->SetLabelSize(28);
 
@@ -400,11 +405,11 @@ void plotter(){
 
 	TString png_name = hname;
 	if(nlayer == "Layer1/"){
-	  c3->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1.png");
-	  c4->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_old.png");
+	  c3->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_oldlogic_withfixes.png");
+	  c4->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_0.4um_new.png");
 	}else if(nlayer == "Layer2/"){
-	  c3->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2.png");
-	  c4->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_old.png");
+	  c3->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_oldlogic_withfixes.png");
+	  c4->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_0.4um_new.png");
 	}
 
       }else if(hname == "Position_1" || hname == "MatchedPosition_1"){
@@ -503,11 +508,11 @@ void plotter(){
 
 	TString png_name = hname;
 	if(nlayer == "Layer1/"){
-	  c5->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1.png");
-	  c6->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_old.png");
+	  c5->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_oldlogic_withfixes.png");
+	  c6->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_0.4um_new.png");
 	}else if(nlayer == "Layer2/"){
-	  c5->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2.png");
-	  c6->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_old.png");
+	  c5->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_oldlogic_withfixes.png");
+	  c6->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_0.4um_new.png");
 	}
 
       }else if(hname == "SimClusterCharge"){
@@ -594,11 +599,11 @@ void plotter(){
 
 	TString png_name = hname;
 	if(nlayer == "Layer1/"){
-	  c7->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1.png");
-	  c8->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_old.png");
+	  c7->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_oldlogic_withfixes.png");
+	  c8->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_0.4um_new.png");
 	}else if(nlayer == "Layer2/"){
-	  c7->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2.png");
-	  c8->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_old.png");
+	  c7->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_oldlogic_withfixes.png");
+	  c8->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_0.4um_new.png");
 	}
 
       }else{
@@ -625,7 +630,7 @@ void plotter(){
 	  histo->Rebin(5);
 	}
 
-	histo->SetLineColor(kBlue+3);
+ 	histo->SetLineColor(kBlue+3);
 	histo->SetLineWidth(3);
 
 	if(hname == "ChargeElec1D"){
@@ -801,11 +806,11 @@ void plotter(){
 
 	TString png_name = hname;
 	if(nlayer == "Layer1/"){
-	  c1->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1.png");
-	  c2->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_old.png");
+	  c1->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_oldlogic_withfixes.png");
+	  c2->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer1_0.4um_new.png");
 	}else if(nlayer == "Layer2/"){
-	  c1->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2.png");
-	  c2->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_old.png");
+	  c1->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_oldlogic_withfixes.png");
+	  c2->SaveAs("/afs/cern.ch/user/c/clasaosa/plotter/ElectronsPerADC/"+png_name+"_layer2_0.4um_new.png");
 	}
       }
     }
