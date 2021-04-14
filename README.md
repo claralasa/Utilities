@@ -9,8 +9,11 @@ All these scripts explain inside how to be run.
 - Several macros to plot histograms and profiles from a root file with a specific style:
 
 `plotter.C` or `plotter.py`
+
 `plotter_comparing_histograms.C`
+
 `plotter_comparing_profilesFromPixelCellHistograms.C`
+
 `plotter_severalHistograms_withFits.C`
 
 - Scripts to generate a list or sorted list of input files located in a specific directory:
