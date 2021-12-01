@@ -23,7 +23,7 @@ All these scripts explain inside how to be run.
 
 - Script to generate a list of missing files sorted by number in a specific range:
 
-`create_missing_list.py
+`create_missing_list.py`
 
 - Script to replace a string with another inside a set of bash files:
 
@@ -32,3 +32,7 @@ All these scripts explain inside how to be run.
 - Script to generate the job resubmission file for htcondor:
 
 `create_script_2resub.py`
+
+- Script to find the pixels not enabled in a specific range of columns
+
+`find_not_enabled_pixels.py`
